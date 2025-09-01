@@ -7,7 +7,7 @@ class LinearRegression():
         # (with defaults) as you see fit
         self.vekt = None    # Ax +c dette er A  
         self.bias = None    # konstanten 
-        self.lr = 10      # læringsrate
+        self.lr = 0.001      # læringsrate
         self.epochs = 1000  # antall iterasjoner
 
         
