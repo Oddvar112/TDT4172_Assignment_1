@@ -30,21 +30,20 @@ class LogisticRegression:
         first_feats = self._features_for_sample(X0[0], X1[0])
         d = first_feats.size
 
-        self.weights = np.zeros(d)
+        self.weights = 0.0
         self.bias = 0.0
 
         for i in range(self.epochs):
             feil_total = 0.0
-            grad_w = np.zeros(d)
-
+            grad_w = 0.0
             for j in range(n):
-                sirkel = self._features_for_sample(X0[j], X1[j])
-                z = np.dot(sirkel, self.weights) + self.bias #en skalar
+                prediksjonsirkel = self._features_for_sample(X0[j], X1[j]) #funksjonsverdien prediksjon 
+                z = np.dot(prediksjonsirkel, self.weights) + self.bias #en skalar
                 pred = self.sigmoid(z)
                 feil = pred - y[j]
 
                 feil_total += feil
-                grad_w += feil * sirkel
+                grad_w += feil * prediksjonsirkel
 
             self.weights -= self.lr * (1.0 / n) * grad_w  #bruker Logistisk loss
             self.bias -= self.lr * (1.0 / n) * feil_total
